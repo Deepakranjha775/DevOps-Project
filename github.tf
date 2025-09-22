@@ -8,7 +8,7 @@ terraform {
 }
  
 provider "github" {
-  token = "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"
+  token = ""
 }
 
 resource "github_repository" "Deepak" {
