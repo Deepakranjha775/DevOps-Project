@@ -1,21 +1,21 @@
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "~> 6.0"
-    }
-  }
-}
+# terraform {
+#   required_providers {
+#     github = {
+#       source  = "integrations/github"
+#       version = "~> 6.0"
+#     }
+#   }
+# }
  
-provider "github" {
-  token = ""
-}
+# provider "github" {
+#   token = ""
+# }
 
-resource "github_repository" "Deepak" {
-  name        = "DevOps-Project"
-  description = "Infrastructure as Code for AWS"
-  visibility = "private"
-}
+# resource "github_repository" "Deepak" {
+#   name        = "DevOps-Project"
+#   description = "Infrastructure as Code for AWS"
+#   visibility = "public"
+# }
 
 
 # provider "github" {
