@@ -41,6 +41,8 @@ jobs:
       # Run Terraform Plan (this will display the changes to be applied)
       - name: Terraform Plan
         run: terraform plan -out=tfplan
+        env:
+         TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
 
       # Save the Terraform Plan output as an artifact
       - name: Save Terraform Plan output
