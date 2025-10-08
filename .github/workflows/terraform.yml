@@ -50,7 +50,7 @@ jobs:
         run: terraform show -no-color tfplan > terraform_plan.txt
 
       - name: Upload Plan as Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: terraform-plan-output
           path: terraform_plan.txt
