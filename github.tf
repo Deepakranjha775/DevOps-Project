@@ -1,22 +1,29 @@
-# terraform {
-#   required_providers {
-#     github = {
-#       source  = "integrations/github"
-#       version = "~> 6.0"
-#     }
-#   }
-# }
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "~> 6.0"
+    }
+  }
+}
  
-# provider "github" {
-#   token = ""
-# }
+provider "github" {
+  token = var.github_token
+  owner = "Deepakranjha775"
+}
 
-# resource "github_repository" "Deepak" {
-#   name        = "DevOps-Project"
-#   description = "Infrastructure as Code for AWS"
-#   visibility = "public"
-# }
+resource "github_repository" "Deepak" {
+  name        = "DevOps-Project"
+  description = "Infrastructure as Code for AWS"
+  visibility = "public"
+}
 
+
+variable "github_token" {
+  description = "GitHub Personal Access Token"
+  type        = string
+  sensitive   = true
+}
 
 # provider "github" {
 #   token = var.github_token

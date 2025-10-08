@@ -88,3 +88,5 @@ jobs:
       # Terraform Apply after approval
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
+        env:
+        TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
