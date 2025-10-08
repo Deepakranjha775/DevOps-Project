@@ -87,7 +87,9 @@ jobs:
          issue-title: "Terraform Apply Approval"
          issue-body: "Please approve this deployment to apply Terraform changes."
          minimum-approvals: 1
-         timeout-minutes: 60
+         secret: ${{ secrets.GITHUB_TOKEN }}
+         exclude-workflow-initiator-as-approver: false
+         fail-on-denial: true
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
