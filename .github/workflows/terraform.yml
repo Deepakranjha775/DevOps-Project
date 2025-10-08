@@ -80,8 +80,8 @@ jobs:
         env:
           TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
 
-      - name: Request Manual Approval
-        uses: peter-evans/manual-approval@v1
+      - name: Manual Approval
+        uses: peter-evans/manual-approval@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
 
