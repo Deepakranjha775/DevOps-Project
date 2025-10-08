@@ -83,7 +83,7 @@ jobs:
       - name: Manual Approval
         uses: peter-evans/manual-approval@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
 
       # Terraform Apply after approval
       - name: Terraform Apply
