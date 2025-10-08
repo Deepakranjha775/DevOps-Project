@@ -83,7 +83,8 @@ jobs:
       - name: Manual Approval
         uses: peter-evans/manual-approval@v3
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+           timeout-minutes: 60
+           instructions: "Please approve this deployment"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
