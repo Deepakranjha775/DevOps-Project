@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "eu-north-1"
+  region = "eu-north-1"
 }
 
 resource "aws_vpc" "main" {
@@ -10,7 +10,6 @@ resource "aws_subnet" "main" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
 }
-
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
@@ -25,26 +24,25 @@ resource "aws_route_table" "rt" {
   }
 }
 
-
-
 resource "aws_route_table_association" "a" {
   subnet_id      = aws_subnet.main.id
   route_table_id = aws_route_table.rt.id
 }
 
-
 resource "aws_security_group" "instance_sg" {
   name        = "instance_sg"
-  description = "Allow SSH and HTTP"
+  description = "Allow SSH, HTTP, and app ports"
   vpc_id      = aws_vpc.main.id
 
+  # SSH (port 22)
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] 
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # HTTP (port 80)
   ingress {
     from_port   = 80
     to_port     = 80
@@ -52,6 +50,23 @@ resource "aws_security_group" "instance_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # App port (port 3000)
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # App port (port 8080)
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Allow all outbound traffic
   egress {
     from_port   = 0
     to_port     = 0
@@ -61,11 +76,11 @@ resource "aws_security_group" "instance_sg" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-043339ea831b48099"
-  instance_type = "t3.micro"
-  subnet_id              = aws_subnet.main.id
-  vpc_security_group_ids = [aws_security_group.instance_sg.id]
-  key_name               = "devops-project"
+  ami                         = "ami-043339ea831b48099"
+  instance_type               = "t3.micro"
+  subnet_id                   = aws_subnet.main.id
+  vpc_security_group_ids      = [aws_security_group.instance_sg.id]
+  key_name                    = "devops-project"
   associate_public_ip_address = true
 
   tags = {
