@@ -81,10 +81,13 @@ jobs:
           TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Manual Approval
-        uses: peter-evans/manual-approval-action@v3
+        uses: trstringer/manual-approval@v1
         with:
-           timeout-minutes: 60
-           instructions: "Please approve this deployment"
+         approvers: Deepakranjha775
+         issue-title: "Terraform Apply Approval"
+         issue-body: "Please approve this deployment to apply Terraform changes."
+         minimum-approvals: 1
+         timeout-minutes: 60
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
