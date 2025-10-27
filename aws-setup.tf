@@ -77,6 +77,7 @@ resource "aws_security_group" "instance_sg" {
 
 
 
+
 resource "aws_instance" "web" {
   ami                         = "ami-043339ea831b48099"
   instance_type               = "t3.micro"
